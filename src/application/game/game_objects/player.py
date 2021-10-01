@@ -27,10 +27,6 @@ class Player(GravitationalObject):
     def update(self, *args, **kwargs) -> None:
         super(Player, self).update(*args, **kwargs)
         self.__handle_vertical_movement()
-        if pygame.key.get_pressed()[pygame.key.key_code("w")]:
-            self._translate(Vector2(0, 10 * kwargs["delta_time"]))
-        if pygame.key.get_pressed()[pygame.key.key_code("s")]:
-            self._translate(Vector2(0, -10 * kwargs["delta_time"]))
 
     def __handle_vertical_movement(self) -> None:
         if self.is_grounded:
