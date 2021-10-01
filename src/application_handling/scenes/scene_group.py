@@ -13,7 +13,7 @@ class SceneGroup:
 
     def update(self) -> None:
         """Updates all scenes in the group that are not paused"""
-        delta_time: float = self.__last_time_update_was_called - time.time()
+        delta_time: float = time.time() - self.__last_time_update_was_called
         for scene in self.__scenes:
             if not scene.is_paused:
                 scene.update(delta_time)
