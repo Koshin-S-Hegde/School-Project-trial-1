@@ -14,24 +14,24 @@ class Object(Sprite):
     def __init__(self, *groups: AbstractGroup):
         super().__init__(*groups)
         self.__size_percentage = Vector2(50, 50)
-        self._set_image_path("images/default_object.png")
-        self._set_position(Vector2(50, 50))
+        self.set_image_path("images/default_object.png")
+        self.set_position(Vector2(50, 50))
         event_handler.subscribe(pygame.WINDOWRESIZED, self.__window_resize_event_callback)
 
     # Image manipulation
-    def _set_image_surface(self, surface: pygame.Surface) -> None:
+    def set_image_surface(self, surface: pygame.Surface) -> None:
         self.__original_image = surface.convert_alpha()
         self.__update_image_size()
 
-    def _set_image_path(self, image_path: str) -> None:
-        self._set_image_surface(pygame.image.load(image_path))
+    def set_image_path(self, image_path: str) -> None:
+        self.set_image_surface(pygame.image.load(image_path))
 
     #  Size manipulation
-    def _set_size(self, size: Vector2) -> None:
+    def set_size(self, size: Vector2) -> None:
         self.__size_percentage = size
         self.__update_image_size()
 
-    def _get_size(self) -> Vector2:
+    def get_size(self) -> Vector2:
         return self.__size_percentage
 
     def __update_image_size(self) -> None:
@@ -46,11 +46,11 @@ class Object(Sprite):
         ]
 
     # Position manipulation
-    def _set_position(self, position: Vector2) -> None:
+    def set_position(self, position: Vector2) -> None:
         self.__position_percentage = position
         self.rect.center = self.__get_absolute_position()
 
-    def _get_position(self) -> Vector2:
+    def get_position(self) -> Vector2:
         return self.__position_percentage
 
     def __get_absolute_position(self) -> Vector2:
@@ -61,7 +61,7 @@ class Object(Sprite):
 
     def __window_resize_event_callback(self) -> None:
         self.__update_image_size()
-        self._set_position(self.__position_percentage)
+        self.set_position(self.__position_percentage)
 
     def update(self, *args, **kwargs) -> None:
         super(Object, self).update(*args, **kwargs)

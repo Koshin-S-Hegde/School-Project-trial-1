@@ -13,8 +13,8 @@ class Player(GravitationalObject):
         super().__init__(*groups)
         self.__jump_velocity = 100
         self.is_grounded = True
-        self._set_size(Vector2(10, 10))
-        self._set_image_path("images/player.png")
+        self.set_size(Vector2(10, 10))
+        self.set_image_path("images/player.png")
 
     @property
     def is_grounded(self) -> bool:
@@ -30,9 +30,9 @@ class Player(GravitationalObject):
 
     def __handle_vertical_movement(self) -> None:
         if self.is_grounded:
-            self._set_gravity(0)
-            self._set_velocity(Vector2(self._get_velocity().x, 0))
+            self.set_gravity(0)
+            self.set_velocity(Vector2(self.get_velocity().x, 0))
         else:
-            self._set_gravity(100)
+            self.set_gravity(100)
         if self.is_grounded and pygame.key.get_pressed()[pygame.key.key_code(" ")]:
-            self._set_velocity(Vector2(0, -self.__jump_velocity))
+            self.set_velocity(Vector2(0, -self.__jump_velocity))

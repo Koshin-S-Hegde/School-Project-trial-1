@@ -19,6 +19,6 @@ class Text(Object):
         font = pygame.font.SysFont("ariel", quality)
         font_surface = font.render(text, True, text_color, back_ground_color)
 
-        self._set_image_surface(font_surface)
-        self._set_size(size)
-        self._set_position(position)
+        self.set_image_surface(font_surface)
+        self.set_size(size)
+        self.set_position(position)
