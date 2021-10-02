@@ -14,7 +14,7 @@ class Player(GravitationalObject):
         self.__jump_velocity = 100
         self.is_grounded = True
         self.set_size(Vector2(10, 10))
-        self.set_image_path("images/player.png")
+        self.set_image_path("images/square_face_1.png")
 
     @property
     def is_grounded(self) -> bool:
