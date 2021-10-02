@@ -11,9 +11,7 @@ class EventHandler:
     """
 
     supported_callback_events: type = Union[Callable[[], Any], Callable[[pygame.event.Event], Any]]
-    __event_callbacks: Union[
-        dict[int, set[supported_callback_events]],
-    ]
+    __event_callbacks: dict[int, set[supported_callback_events]]
 
     def __init__(self) -> None:
         self.__event_callbacks = dict()
