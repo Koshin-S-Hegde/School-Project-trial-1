@@ -1,7 +1,7 @@
 import pygame.event
 from pygame.sprite import GroupSingle, Group
 
-from src.application.game.game_objects.bullet_handler import BulletHandler
+from src.application.game.game_objects.bullet.bullet_handler import BulletHandler
 from src.application.game.game_objects.obstacle import Obstacle
 from src.application.game.game_objects.player import Player
 from src.application_handling.scenes.scene import Scene
@@ -26,7 +26,7 @@ class Game(Scene):
 
     def update(self, delta_time: float) -> None:
         super(Game, self).update(delta_time=delta_time)
-        self.__bullet_handler.update(delta_time, self.__player.get_position())
+        self.__bullet_handler.update(delta_time, self.__player.get_position(), pygame.mouse.get_pos(), Player)
         print("Game")
         self.__player_group.sprite.is_grounded = False
         for obstacle in pygame.sprite.spritecollide(self.__player_group.sprite, self.__obstacle_group, False):
