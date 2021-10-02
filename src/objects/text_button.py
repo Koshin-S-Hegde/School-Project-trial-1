@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 import pygame.mouse
+from pygame import Vector2
 from pygame.sprite import AbstractGroup
 
 from src.event_handling import event_handler
@@ -15,7 +16,7 @@ class TextButton(Text, Button):
             self, *groups: AbstractGroup,
             back_ground_color: tuple[int, int, int],
             text_color: tuple[int, int, int],
-            size: list[float], position: list[float],
+            size: Vector2, position: Vector2,
             text: str,
             quality: int = 200
     ):
