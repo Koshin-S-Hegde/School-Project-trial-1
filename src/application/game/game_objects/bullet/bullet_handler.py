@@ -13,27 +13,25 @@ class BulletHandler:
     __TOTAL_SHOOT_COOL_DOWN: float
     __shoot_cool_down_left: float
 
-    def __init__(self) -> None:
+    def __init__(self, total_shoot_cool_down: float) -> None:
         self.__bullet_group = Group()
-        self.__TOTAL_SHOOT_COOL_DOWN = 1
+        self.__TOTAL_SHOOT_COOL_DOWN = total_shoot_cool_down
         self.__shoot_cool_down_left = self.__TOTAL_SHOOT_COOL_DOWN
 
-    def update(
-            self,
-            delta_time: float,
-            shooter_position: Vector2,
-            absolute_target_position: tuple,
-            shooter: Type[Object]
-    ) -> None:
-        target_position = Vector2([
-            absolute_target_position[i] * 100 / pygame.display.get_window_size()[i] for i in range(2)
-        ])
-        direction: Vector2 = (target_position - shooter_position).normalize()
-        if pygame.mouse.get_pressed(3)[0] and self.__shoot_cool_down_left <= 0:
-            self.__bullet_group.add(Bullet(direction, shooter_position, shooter=shooter))
-            self.__shoot_cool_down_left = self.__TOTAL_SHOOT_COOL_DOWN
+    def update(self, delta_time: float) -> None:
         self.__shoot_cool_down_left -= delta_time
         self.__bullet_group.update(delta_time=delta_time)
+
+    def shoot(
+            self,
+            shooter_position: Vector2,
+            target_position: Vector2,
+            shooter: Type[Object]
+    ) -> None:
+        if self.__shoot_cool_down_left <= 0:
+            direction: Vector2 = (target_position - shooter_position).normalize()
+            self.__bullet_group.add(Bullet(direction, shooter_position, shooter=shooter))
+            self.__shoot_cool_down_left = self.__TOTAL_SHOOT_COOL_DOWN
 
     def render(self) -> None:
         self.__bullet_group.draw(pygame.display.get_surface())
