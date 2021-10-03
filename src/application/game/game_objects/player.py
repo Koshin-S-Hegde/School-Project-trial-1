@@ -6,12 +6,14 @@ from src.objects import GravitationalObject
 
 
 class Player(GravitationalObject):
-    __jump_velocity: float
+    __JUMP_VELOCITY: float
     __is_grounded: bool
+    __PLAYER_GRAVITY: float
 
     def __init__(self, *groups: AbstractGroup) -> None:
         super().__init__(*groups)
-        self.__jump_velocity = 100
+        self.__JUMP_VELOCITY = 400
+        self.__PLAYER_GRAVITY = 2000
         self.is_grounded = True
         self.set_size(Vector2(10, 10))
         self.set_image_path("images/square_face_1.png")
@@ -33,6 +35,6 @@ class Player(GravitationalObject):
             self.set_gravity(0)
             self.set_velocity(Vector2(self.get_velocity().x, 0))
         else:
-            self.set_gravity(100)
+            self.set_gravity(self.__PLAYER_GRAVITY)
         if self.is_grounded and pygame.key.get_pressed()[pygame.key.key_code(" ")]:
-            self.set_velocity(Vector2(0, -self.__jump_velocity))
+            self.set_velocity(Vector2(0, -self.__JUMP_VELOCITY))
