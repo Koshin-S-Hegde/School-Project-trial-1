@@ -4,6 +4,8 @@ from pygame.sprite import GroupSingle, Group
 from src.application.game.game_objects.obstacle import Obstacle
 from src.application.game.game_objects.player import Player
 from src.application_handling.scenes.scene import Scene
+from src.event_handling import event_handler
+from src.application_handling import application_events
 
 
 class Game(Scene):
@@ -30,6 +32,10 @@ class Game(Scene):
                 self.__player.is_grounded = True
         self.__player_group.update(delta_time=delta_time)
         self.__obstacle_group.update(delta_time=delta_time)
+        # for me
+        if pygame.key.get_pressed()[pygame.key.key_code('K')]:
+            event_handler.post(application_events.END_GAME)
+            event_handler.post(application_events.START_PAUSE_MENU)
 
     def render(self) -> None:
         super(Game, self).render()

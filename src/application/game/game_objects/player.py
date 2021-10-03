@@ -15,7 +15,7 @@ class Player(GravitationalObject):
         self.__JUMP_VELOCITY = 400
         self.__PLAYER_GRAVITY = 2000
         self.is_grounded = True
-        self.set_size(Vector2(10, 10))
+        self.set_size(Vector2(5, 10))
         self.set_image_path("images/square_face_1.png")
 
     @property
