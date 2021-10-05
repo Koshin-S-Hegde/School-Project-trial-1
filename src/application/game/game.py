@@ -5,6 +5,8 @@ from src.application.game.game_objects.enemy_handler import EnemyHandler
 from src.application.game.game_objects.obstacle import Obstacle
 from src.application.game.game_objects.player.player_handler import PlayerHandler
 from src.application_handling.scenes.scene import Scene
+from src.event_handling import event_handler
+from src.application_handling import application_events
 
 
 class Game(Scene):
@@ -26,7 +28,6 @@ class Game(Scene):
         super(Game, self).update(delta_time=delta_time)
         self.__player_handler.update(delta_time, self.__obstacle_group)
         self.__enemy_handler.update(delta_time, self.__player_handler.player)
-        print("Game")
         self.__obstacle_group.update(delta_time=delta_time)
 
     def render(self) -> None:
@@ -34,3 +35,8 @@ class Game(Scene):
         self.__enemy_handler.render()
         self.__player_handler.render()
         self.__obstacle_group.draw(pygame.display.get_surface())
+
+    @staticmethod
+    def __start_pause_menu():
+        event_handler.post(application_events.PAUSE_GAME)
+        event_handler.post(application_events.START_PAUSE_MENU)
