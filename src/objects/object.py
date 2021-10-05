@@ -16,7 +16,7 @@ class Object(Sprite):
         self.__size_percentage = Vector2(50, 50)
         self.set_image_path("images/default_object.png")
         self.set_position(Vector2(50, 50))
-        event_handler.subscribe(pygame.WINDOWRESIZED, self.__window_resize_event_callback)
+        event_handler.subscribe(pygame.VIDEORESIZE, self.__window_resize_event_callback)
 
     # Image manipulation
     def set_image_surface(self, surface: pygame.Surface) -> None:
