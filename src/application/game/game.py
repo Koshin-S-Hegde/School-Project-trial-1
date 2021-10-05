@@ -25,19 +25,19 @@ class Game(Scene):
 
     def update(self, delta_time: float) -> None:
         super(Game, self).update(delta_time=delta_time)
-        print("Game")
         self.__player.is_grounded = False
         for obstacle in pygame.sprite.spritecollide(self.__player, self.__obstacle_group, False):
             if self.__player.rect.y < obstacle.rect.y:
                 self.__player.is_grounded = True
         self.__player_group.update(delta_time=delta_time)
         self.__obstacle_group.update(delta_time=delta_time)
-        # for me
-        if pygame.key.get_pressed()[pygame.key.key_code('K')]:
-            event_handler.post(application_events.END_GAME)
-            event_handler.post(application_events.START_PAUSE_MENU)
 
     def render(self) -> None:
         super(Game, self).render()
         self.__player_group.draw(pygame.display.get_surface())
         self.__obstacle_group.draw(pygame.display.get_surface())
+
+    @staticmethod
+    def __start_pause_menu():
+        event_handler.post(application_events.PAUSE_GAME)
+        event_handler.post(application_events.START_PAUSE_MENU)

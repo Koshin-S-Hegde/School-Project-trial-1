@@ -29,10 +29,10 @@ class ApplicationHandler:
         self.__level_menu = self.__create_disposed_scene(LevelMenu)
         self.__pause_menu = self.__create_disposed_scene(PauseMenu)
         self.__game = self.__create_disposed_scene(Game)
+        self.__scene_group.append(self.__game)
         self.__scene_group.append(self.__main_menu)
         self.__scene_group.append(self.__level_menu)
         self.__scene_group.append(self.__pause_menu)
-        self.__scene_group.append(self.__game)
 
     @staticmethod
     def __create_disposed_scene(scene_type: Type):  # TODO:- Fix the type hints for this
@@ -52,6 +52,8 @@ class ApplicationHandler:
         event_handler.subscribe(application_events.STOP_PAUSE_MENU, self.__pause_menu.dispose)
         # game
         event_handler.subscribe(application_events.START_GAME, self.__game.restart)
+        event_handler.subscribe(application_events.PAUSE_GAME, self.__game.pause)
+        event_handler.subscribe(application_events.RESUME_GAME, self.__game.resume)
         event_handler.subscribe(application_events.END_GAME, self.__game.dispose)
 
     def update(self) -> None:
