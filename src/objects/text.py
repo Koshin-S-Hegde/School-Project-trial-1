@@ -10,8 +10,8 @@ class Text(Object):
             *groups: AbstractGroup,
             back_ground_color: tuple[int, int, int],
             text_color: tuple[int, int, int],
-            size: list[float],
-            position: list[float],
+            size: pygame.Vector2,
+            position: pygame.Vector2,
             text: str,
             quality: int = 200
     ):
