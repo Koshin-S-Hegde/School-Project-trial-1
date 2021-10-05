@@ -15,7 +15,7 @@ class LevelMenu(Scene):
     def __init__(self) -> None:
         super().__init__()
         self.__level_button = Button()
-        self.__level_button.set_image_path('images/dummy_button.png')
+        self.__level_button.set_image_path('images/menu_bar_level_one.png')
         self.__level_button.set_size(Vector2(35, 15))
         self.__level_button.set_position(Vector2(50, 50))
         self.__button_group = Group(self.__level_button)
@@ -24,7 +24,6 @@ class LevelMenu(Scene):
         self.__button_group.update(delta_time=delta_time)
         if self.__level_button.is_pressed(pygame.BUTTON_LEFT):
             self.__start_game()
-        print('level menu')
 
     @staticmethod
     def __start_game() -> None:

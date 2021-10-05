@@ -49,7 +49,6 @@ class MainMenu(Scene):
             sys.exit()
         if self.__level_select_button.is_pressed(BUTTON_LEFT):
             self.__start_level_menu()
-        print('main menu')
 
     @staticmethod
     def __start_game() -> None:
