@@ -45,8 +45,7 @@ class MainMenu(Scene):
         if self.__start_button.is_pressed(BUTTON_LEFT):
             self.__start_game()
         if self.__quit_button.is_pressed(BUTTON_LEFT):
-            pygame.quit()
-            sys.exit()
+            event_handler.post(pygame.QUIT)
         if self.__level_select_button.is_pressed(BUTTON_LEFT):
             self.__start_level_menu()
 
