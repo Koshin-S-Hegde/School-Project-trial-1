@@ -29,6 +29,8 @@ class Game(Scene):
         self.__player_handler.update(delta_time, self.__obstacle_group, self.__enemy_handler.bullet_group)
         self.__enemy_handler.update(delta_time, self.__player_handler.player, self.__player_handler.bullet_group)
         self.__obstacle_group.update(delta_time=delta_time)
+        pygame.sprite.groupcollide(self.__obstacle_group, self.__player_handler.bullet_group, False, True)
+        pygame.sprite.groupcollide(self.__obstacle_group, self.__enemy_handler.bullet_group, False, True)
 
     def render(self) -> None:
         super(Game, self).render()
