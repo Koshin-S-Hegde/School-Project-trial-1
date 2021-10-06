@@ -3,15 +3,16 @@ from pygame import Vector2
 from pygame.sprite import AbstractGroup
 
 from src.objects import GravitationalObject
+from src.objects.living_object import LivingObject
 
 
-class Player(GravitationalObject):
+class Player(LivingObject, GravitationalObject):
     __JUMP_VELOCITY: float
     __is_grounded: bool
     __PLAYER_GRAVITY: float
 
     def __init__(self, *groups: AbstractGroup) -> None:
-        super().__init__(*groups)
+        super().__init__(10, *groups)
         self.__JUMP_VELOCITY = 400
         self.__PLAYER_GRAVITY = 2000
         self.is_grounded = True

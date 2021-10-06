@@ -7,16 +7,16 @@ from src.objects import KineticObject, Object
 
 
 class Bullet(KineticObject):
-    __shooter: Type[Object]
+    __damage: float
 
-    def __init__(self, direction: Vector2, position: Vector2, *groups: AbstractGroup, shooter: Type[Object]) -> None:
+    def __init__(self, direction: Vector2, position: Vector2, damage: float, *groups: AbstractGroup) -> None:
         super().__init__(*groups)
         self.set_size(Vector2(1, 1))
         self.set_position(Vector2(50, 50))
         self.set_velocity(direction * 100)
         self.set_position(position)
-        self.__shooter = shooter
+        self.__damage = damage
 
     @property
-    def shooter(self) -> Type[Object]:
-        return self.__shooter
+    def damage(self) -> float:
+        return self.__damage

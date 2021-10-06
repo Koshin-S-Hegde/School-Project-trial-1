@@ -26,11 +26,11 @@ class BulletHandler:
             self,
             shooter_position: Vector2,
             target_position: Vector2,
-            shooter: Type[Object]
+            damage: float
     ) -> None:
         if self.__shoot_cool_down_left <= 0:
             direction: Vector2 = (target_position - shooter_position).normalize()
-            self.__bullet_group.add(Bullet(direction, shooter_position, shooter=shooter))
+            self.__bullet_group.add(Bullet(direction, shooter_position, damage=damage))
             self.__shoot_cool_down_left = self.__TOTAL_SHOOT_COOL_DOWN
 
     def render(self) -> None:
