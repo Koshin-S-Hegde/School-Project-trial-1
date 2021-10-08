@@ -12,7 +12,7 @@ class Player(LivingObject, GravitationalObject):
     __PLAYER_GRAVITY: float
 
     def __init__(self, *groups: AbstractGroup) -> None:
-        super().__init__(10, *groups)
+        super().__init__(health=1, *groups)
         self.__JUMP_VELOCITY = 400
         self.__PLAYER_GRAVITY = 2000
         self.is_grounded = True

@@ -20,7 +20,7 @@ class EnemyHandler:
         for enemy in self.enemies:
             for bullet in pygame.sprite.spritecollide(enemy, player_bullet_group, True):
                 enemy.do_damage(bullet.damage)  # TODO:- Fix this
-            self.__bullet_handler.shoot(enemy.get_position(), player.get_position(), damage=1)
+            self.__bullet_handler.shoot(enemy.get_position(), player.get_position(), damage=0.1)
         self.__bullet_handler.update(delta_time)
 
     def render(self) -> None:

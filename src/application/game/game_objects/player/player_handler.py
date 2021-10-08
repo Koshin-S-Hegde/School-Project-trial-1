@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import GroupSingle, Group
 
 from src.application.game.game_objects.bullet.bullet_handler import BulletHandler
+from src.application.game.game_objects.player.health_bar import HealthBar
 from src.application.game.game_objects.player.player import Player
 from src.application_handling import application_events
 from src.event_handling import event_handler
@@ -11,11 +12,13 @@ class PlayerHandler:
     __player: Player
     __player_group: GroupSingle
     __bullet_handler: BulletHandler
+    __health_bar: HealthBar
 
     def __init__(self) -> None:
         self.__player = Player()
         self.__player_group = GroupSingle(self.__player)
         self.__bullet_handler = BulletHandler(1)
+        self.__health_bar = HealthBar()
 
     def update(self, delta_time: float, obstacle_group: Group, enemy_bullet_group: Group) -> None:
         if not self.__player.alive():
@@ -32,6 +35,7 @@ class PlayerHandler:
             pygame.mouse.get_pos()[i] * 100 / pygame.display.get_window_size()[i] for i in range(2)
         ])
         self.__bullet_handler.update(delta_time)
+        self.__health_bar.update(delta_time, self.__player.health)
         if pygame.mouse.get_pressed(3)[0]:
             self.__bullet_handler.shoot(self.__player.get_position(), mouse_position, damage=1)
 
@@ -41,6 +45,7 @@ class PlayerHandler:
         event_handler.post(application_events.START_MAIN_MENU)
 
     def render(self) -> None:
+        self.__health_bar.render()
         self.__player_group.draw(pygame.display.get_surface())
         self.__bullet_handler.render()
 
