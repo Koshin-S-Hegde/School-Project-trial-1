@@ -12,9 +12,11 @@ class LivingObject(Object):
 
     def do_damage(self, damage: float) -> None:
         self.__health -= damage
+        self.__health = round(self.__health, 10)  # This is to prevent inaccuracies in floating point arithmetics
 
     def heal(self, health_boost: float) -> None:
         self.__health += health_boost
+        self.__health = round(self.__health, 10)  # This is to prevent inaccuracies in floating point arithmetics
 
     @property
     def health(self) -> float:
