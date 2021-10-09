@@ -13,9 +13,7 @@ class Object(Sprite):
 
     def __init__(self, *groups: AbstractGroup):
         super().__init__(*groups)
-        self.__size_percentage = Vector2(50, 50)
         self.set_image_path("images/default_object.png")
-        self.set_position(Vector2(50, 50))
         event_handler.subscribe(pygame.VIDEORESIZE, self.__window_resize_event_callback)
 
     # Image manipulation
@@ -32,17 +30,21 @@ class Object(Sprite):
         self.__update_image_size()
 
     def get_size(self) -> Vector2:
-        return self.__size_percentage
+        try:
+            return self.__size_percentage
+        except AttributeError:
+            return Vector2(50, 50)  # Default size
 
     def __update_image_size(self) -> None:
         absolute_size = list(self.__get_absolute_size())
         self.image = pygame.transform.scale(self.__original_image, absolute_size)
         self.rect = self.image.get_rect()
+        self.__update_position()
 
     def __get_absolute_size(self) -> list[int]:
         window_size: Vector2 = Vector2(pygame.display.get_surface().get_size())
         return [
-            int(window_size[i] * self.__size_percentage[i] // 100) for i in range(2)
+            int(window_size[i] * self.get_size()[i] // 100) for i in range(2)
         ]
 
     # Position manipulation
@@ -51,17 +53,23 @@ class Object(Sprite):
         self.rect.center = self.__get_absolute_position()
 
     def get_position(self) -> Vector2:
-        return self.__position_percentage
+        try:
+            return self.__position_percentage
+        except AttributeError:
+            return Vector2(50, 50)  # Default position
+
+    def __update_position(self) -> None:
+        self.set_position(self.get_position())
 
     def __get_absolute_position(self) -> Vector2:
         window_size: Vector2 = Vector2(pygame.display.get_surface().get_size())
         return Vector2([
-            window_size[i] * self.__position_percentage[i] for i in range(2)
+            window_size[i] * self.get_position()[i] for i in range(2)
         ]) // 100
 
     def __window_resize_event_callback(self) -> None:
         self.__update_image_size()
-        self.set_position(self.__position_percentage)
+        self.__update_position()
 
     def update(self, *args, **kwargs) -> None:
         super(Object, self).update(*args, **kwargs)
