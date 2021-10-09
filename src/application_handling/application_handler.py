@@ -7,6 +7,7 @@ from src.application.main_menu import MainMenu
 from src.application.pause_menu import PauseMenu
 from src.application_handling.scenes.scene import Scene
 from src.application_handling.scenes.scene_group import SceneGroup
+from src.application.end_menu import EndMenu
 from src.event_handling import event_handler
 
 
@@ -15,6 +16,7 @@ class ApplicationHandler:
     __level_menu: LevelMenu
     __pause_menu: PauseMenu
     __game: Game
+    __end_menu: EndMenu
     __pause_menu: Scene
     __end_menu: Scene
     __scene_group: SceneGroup
@@ -29,10 +31,12 @@ class ApplicationHandler:
         self.__level_menu = self.__create_disposed_scene(LevelMenu)
         self.__pause_menu = self.__create_disposed_scene(PauseMenu)
         self.__game = self.__create_disposed_scene(Game)
+        self.__end_menu = self.__create_disposed_scene(EndMenu)
         self.__scene_group.append(self.__game)
         self.__scene_group.append(self.__main_menu)
         self.__scene_group.append(self.__level_menu)
         self.__scene_group.append(self.__pause_menu)
+        self.__scene_group.append(self.__end_menu)
 
     @staticmethod
     def __create_disposed_scene(scene_type: Type):  # TODO:- Fix the type hints for this
@@ -55,6 +59,9 @@ class ApplicationHandler:
         event_handler.subscribe(application_events.PAUSE_GAME, self.__game.pause)
         event_handler.subscribe(application_events.RESUME_GAME, self.__game.resume)
         event_handler.subscribe(application_events.END_GAME, self.__game.dispose)
+        # end menu
+        event_handler.subscribe(application_events.START_END_MENU, self.__end_menu.restart)
+        event_handler.subscribe(application_events.STOP_END_MENU, self.__end_menu.dispose)
 
     def update(self) -> None:
         self.__scene_group.update()
