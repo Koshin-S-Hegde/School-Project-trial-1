@@ -1,7 +1,7 @@
 import pygame.event
 from pygame.sprite import Group
 
-from src.application.game.game_objects.enemy_handler import EnemyHandler
+from src.application.game.game_objects.enemy.enemy_handler import EnemyHandler
 from src.application.game.game_objects.obstacle import Obstacle
 from src.application.game.game_objects.player.player_handler import PlayerHandler
 from src.application_handling.scenes.scene import Scene
@@ -26,9 +26,11 @@ class Game(Scene):
 
     def update(self, delta_time: float) -> None:
         super(Game, self).update(delta_time=delta_time)
-        self.__player_handler.update(delta_time, self.__obstacle_group)
-        self.__enemy_handler.update(delta_time, self.__player_handler.player)
+        self.__player_handler.update(delta_time, self.__obstacle_group, self.__enemy_handler.bullet_group)
+        self.__enemy_handler.update(delta_time, self.__player_handler.player, self.__player_handler.bullet_group)
         self.__obstacle_group.update(delta_time=delta_time)
+        pygame.sprite.groupcollide(self.__obstacle_group, self.__player_handler.bullet_group, False, True)
+        pygame.sprite.groupcollide(self.__obstacle_group, self.__enemy_handler.bullet_group, False, True)
 
     def render(self) -> None:
         super(Game, self).render()
