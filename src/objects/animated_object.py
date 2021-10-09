@@ -7,12 +7,13 @@ class AnimatedObject(Object):
     __current_sprite_index: float
     __frame_list: list[pygame.Surface]
     __animation_speed: float
-    __should_animation_run = False
+    __should_animation_run: bool
 
     def __init__(self):
         super().__init__()
         self.__current_sprite_index = 0
         self.__frame_list = []
+        self.__should_animation_run = False
 
     def set_first_frame(self, sprite_path: str) -> None:
         self.set_image_surface(pygame.image.load(sprite_path))
