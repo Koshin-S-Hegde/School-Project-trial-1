@@ -20,8 +20,11 @@ class Button(Object):
     def is_pressed(self, mouse_button: int) -> bool:
         return (
                 self.__mouse_is_down[mouse_button] and
-                self.rect.collidepoint(pygame.mouse.get_pos())
+                self.is_hovering()
         )
+
+    def is_hovering(self) -> bool:
+        return self.rect.collidepoint(pygame.mouse.get_pos())
 
     def __mouse_button_down_callback(self, event: pygame.event.Event) -> None:
         self.__mouse_is_down[event.button] = True
