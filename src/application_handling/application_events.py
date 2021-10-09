@@ -14,3 +14,6 @@ STOP_MAIN_MENU: int = event_creator.create_event()
 # pause menu
 START_PAUSE_MENU: int = event_creator.create_event()
 STOP_PAUSE_MENU: int = event_creator.create_event()
+# end menu
+START_END_MENU: int = event_creator.create_event()
+STOP_END_MENU: int = event_creator.create_event()
