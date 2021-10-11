@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import AbstractGroup
 
 from src.objects.object import Object
 
@@ -9,7 +10,7 @@ class AnimatedObject(Object):
     __animation_speed: float
     __should_animation_run: bool
 
-    def __init__(self):
+    def __init__(self, *groups: AbstractGroup):
         super().__init__()
         self.__current_sprite_index = 0
         self.__frame_list = []
