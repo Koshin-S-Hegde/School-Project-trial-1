@@ -1,11 +1,11 @@
-import sys
 import pygame
 from pygame import Vector2, BUTTON_LEFT
 from pygame.sprite import Group
-from src.application_handling.scenes.scene import Scene
-from src.objects import Button
+
 from src.application_handling import application_events
+from src.application_handling.scenes.scene import Scene
 from src.event_handling import event_handler
+from src.objects import Button
 
 
 class MainMenu(Scene):
