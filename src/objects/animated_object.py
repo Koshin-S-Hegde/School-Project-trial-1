@@ -19,6 +19,9 @@ class AnimatedObject(Object):
         self.set_image_surface(pygame.image.load(sprite_path))
         self.__frame_list.append(pygame.image.load(sprite_path))
 
+    def change_frame(self, frame_number: int, sprite_path: str) -> None:
+        self.__frame_list[frame_number] = pygame.image.load(sprite_path)
+
     def set_custom_frame(self, frame_number: int) -> None:
         self.set_image_surface(self.__frame_list[frame_number])
 
