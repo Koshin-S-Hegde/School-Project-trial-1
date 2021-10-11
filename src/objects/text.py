@@ -11,7 +11,7 @@ class Text(Object):
     text_position: Vector2
     __font: pygame.font.Font
 
-    def __init__(self, custom_text, text_style, text_color, text_quality):
+    def __init__(self, custom_text: str, text_style: str, text_color: tuple, text_quality: int):
         super().__init__()
         self.__custom_text = custom_text
         self.__text_style = text_style
