@@ -1,4 +1,3 @@
-import sys
 import pygame
 from pygame import Vector2, BUTTON_LEFT
 from pygame.sprite import Group
