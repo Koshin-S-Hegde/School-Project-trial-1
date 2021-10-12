@@ -21,6 +21,9 @@ class AnimatedObject(Object):
         self.__frame_list.append(pygame.image.load(sprite_path))
 
     def change_frame(self, frame_number: int, sprite_path: str) -> None:
+        if frame_number > len(self.__frame_list) - 1:
+            self.add_animation_sprite("images/default.png")
+            return self.change_frame(frame_number, sprite_path)
         self.__frame_list[frame_number] = pygame.image.load(sprite_path)
 
     def set_custom_frame(self, frame_number: int) -> None:
