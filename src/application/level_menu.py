@@ -15,7 +15,7 @@ class LevelMenu(Scene):
     def __init__(self) -> None:
         super().__init__()
         self.__level_button = Button()
-        self.__level_button.set_image_path('images/menu_bar_level_one.png')
+        self.__level_button.set_image_path('images/button_images/menu_bar_level_one.png')
         self.__level_button.set_size(Vector2(35, 15))
         self.__level_button.set_position(Vector2(50, 50))
         self.__button_group = Group(self.__level_button)

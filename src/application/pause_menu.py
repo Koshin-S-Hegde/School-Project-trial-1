@@ -23,19 +23,19 @@ class PauseMenu(Scene):
 
     def __start_button_config(self) -> None:
         self.__start_button = Button()
-        self.__start_button.set_image_path('images/menu_bar_resume.png')
+        self.__start_button.set_image_path('images/button_images/menu_bar_resume.png')
         self.__start_button.set_size(Vector2(35, 15))
         self.__start_button.set_position(Vector2(50, 30))
 
     def __level_select_button_config(self) -> None:
         self.__level_select_button = Button()
-        self.__level_select_button.set_image_path('images/menu_bar_level.png')
+        self.__level_select_button.set_image_path('images/button_images/menu_bar_level.png')
         self.__level_select_button.set_size(Vector2(35, 15))
         self.__level_select_button.set_position((Vector2(50, 50)))
 
     def __main_menu_button_config(self) -> None:
         self.__main_menu_button = Button()
-        self.__main_menu_button.set_image_path('images/menu_bar_main_menu.png')
+        self.__main_menu_button.set_image_path('images/button_images/menu_bar_main_menu.png')
         self.__main_menu_button.set_size(Vector2(35, 15))
         self.__main_menu_button.set_position(Vector2(50, 70))
 

@@ -1,15 +1,16 @@
 import pygame
-from pygame import Vector2, BUTTON_LEFT
+from pygame import Vector2
 from pygame.sprite import Group
 
 from src.application_handling import application_events
 from src.application_handling.scenes.scene import Scene
 from src.event_handling import event_handler
 from src.objects import Button
+from src.objects.event_integrated_button import EventIntegratedButton
 
 
 class MainMenu(Scene):
-    __start_button: Button
+    __start_button: EventIntegratedButton
     __level_select_button: Button
     __quit_button: Button
     __button_group: Group
@@ -23,36 +24,28 @@ class MainMenu(Scene):
         self.__button_group = Group(self.__button_list)
 
     def __start_button_config(self) -> None:
-        self.__start_button = Button()
-        self.__start_button.set_image_path('images/menu_bar_start.png')
+        self.__start_button = EventIntegratedButton()
+        self.__start_button.set_default_image_path('images/button_images/start_1.png')
+        self.__start_button.set_hover_image_path('images/button_images/start_2.png')
+        self.__start_button.add_click_event(application_events.STOP_MAIN_MENU)
+        self.__start_button.add_click_event(application_events.START_GAME, level_name="level_1")
         self.__start_button.set_size(Vector2(35, 15))
         self.__start_button.set_position(Vector2(50, 30))
 
     def __level_select_button_config(self) -> None:
         self.__level_select_button = Button()
-        self.__level_select_button.set_image_path('images/menu_bar_level.png')
+        self.__level_select_button.set_image_path('images/button_images/level_1.png')
         self.__level_select_button.set_size(Vector2(35, 15))
         self.__level_select_button.set_position((Vector2(50, 50)))
 
     def __quit_button_config(self) -> None:
         self.__quit_button = Button()
-        self.__quit_button.set_image_path('images/menu_bar_quit.png')
+        self.__quit_button.set_image_path('images/button_images/exit_1.png')
         self.__quit_button.set_size(Vector2(35, 15))
         self.__quit_button.set_position(Vector2(50, 70))
 
     def update(self, delta_time: float) -> None:
         self.__button_group.update(delta_time=delta_time)
-        if self.__start_button.is_pressed(BUTTON_LEFT):
-            self.__start_game()
-        if self.__quit_button.is_pressed(BUTTON_LEFT):
-            event_handler.post(pygame.QUIT)
-        if self.__level_select_button.is_pressed(BUTTON_LEFT):
-            self.__start_level_menu()
-
-    @staticmethod
-    def __start_game() -> None:
-        event_handler.post(application_events.START_GAME, level_name="level_1")
-        event_handler.post(application_events.STOP_MAIN_MENU)
 
     @staticmethod
     def __start_level_menu() -> None:
