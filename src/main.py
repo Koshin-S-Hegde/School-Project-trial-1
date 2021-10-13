@@ -16,7 +16,6 @@ def run() -> None:
     application_handler: ApplicationHandler = ApplicationHandler()
     while True:
         update(application_handler)
-        pygame.event.clear()
         render(application_handler)
 
 

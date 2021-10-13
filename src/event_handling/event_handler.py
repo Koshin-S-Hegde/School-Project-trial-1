@@ -48,3 +48,4 @@ class EventHandler:
                         callback(posted_event)
                     except TypeError:
                         callback()
+        pygame.event.clear()
