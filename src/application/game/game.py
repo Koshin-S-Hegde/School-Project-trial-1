@@ -31,6 +31,9 @@ class Game(Scene):
         self.__obstacle_group.update(delta_time=delta_time)
         pygame.sprite.groupcollide(self.__obstacle_group, self.__player_handler.bullet_group, False, True)
         pygame.sprite.groupcollide(self.__obstacle_group, self.__enemy_handler.bullet_group, False, True)
+        # pause menu
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            self.__start_pause_menu()
 
     def render(self) -> None:
         super(Game, self).render()
