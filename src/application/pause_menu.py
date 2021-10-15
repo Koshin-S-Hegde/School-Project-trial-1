@@ -8,7 +8,7 @@ from src.objects.event_integrated_button import EventIntegratedButton
 
 
 class PauseMenu(Scene):
-    primary_background: Object
+    __primary_background: Object
     __button_group: Group
     __primary_background_group: GroupSingle
 

@@ -9,8 +9,8 @@ from src.objects.event_integrated_button import EventIntegratedButton
 
 
 class MainMenu(Scene):
-    secondary_background: Object
-    primary_background: Object
+    __secondary_background: Object
+    __primary_background: Object
     __button_group: Group
     __secondary_background_group: Group
     __primary_background_group: GroupSingle

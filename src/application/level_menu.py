@@ -10,7 +10,7 @@ from src.objects.event_integrated_button import EventIntegratedButton
 
 class LevelMenu(Scene):
     __button_group: Group
-    background: Object
+    __background: Object
     __background_group: GroupSingle
 
     def __init__(self) -> None:
