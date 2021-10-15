@@ -1,68 +1,70 @@
 import pygame
-from pygame import Vector2, BUTTON_LEFT
-from pygame.sprite import Group
+from pygame import Vector2
+from pygame.sprite import Group, GroupSingle
 from src.application_handling.scenes.scene import Scene
-from src.objects import Button
+from src.objects import Object
 from src.application_handling import application_events
-from src.event_handling import event_handler
+from src.objects.event_integrated_button import EventIntegratedButton
 
 
 class PauseMenu(Scene):
-    __start_button: Button
-    __level_select_button: Button
-    __main_menu_button: Button
+    __primary_background: Object
     __button_group: Group
+    __primary_background_group: GroupSingle
 
     def __init__(self) -> None:
         super().__init__()
-        self.__start_button_config()
+        # groups
+        self.__button_group = Group()
+        # background configs
+        self.__primary_background_config()
+        # button configs
+        self.__resume_button_config()
         self.__level_select_button_config()
         self.__main_menu_button_config()
-        button_list = [self.__start_button, self.__level_select_button, self.__main_menu_button]
-        self.__button_group = Group(button_list)
 
-    def __start_button_config(self) -> None:
-        self.__start_button = Button()
-        self.__start_button.set_image_path('images/menu_bar_resume.png')
-        self.__start_button.set_size(Vector2(35, 15))
-        self.__start_button.set_position(Vector2(50, 30))
+    def __primary_background_config(self) -> None:
+        primary_background = Object()
+        primary_background.set_image_path('images/background_images/transparent_background_set/tra-3.png')
+        primary_background.set_size(Vector2(100, 100))
+        primary_background.set_position(Vector2(50, 50))
+        self.__primary_background_group = GroupSingle(primary_background)
+
+    def __resume_button_config(self) -> None:
+        resume_button = EventIntegratedButton()
+        resume_button.set_default_image_path('images/button_images/resume_1.png')
+        resume_button.set_hover_image_path('images/button_images/resume_2.png')
+        resume_button.add_click_event(application_events.STOP_PAUSE_MENU)
+        resume_button.add_click_event(application_events.RESUME_GAME)
+        resume_button.set_size(Vector2(21, 8))
+        resume_button.set_position(Vector2(50, 40))
+        self.__button_group.add(resume_button)
 
     def __level_select_button_config(self) -> None:
-        self.__level_select_button = Button()
-        self.__level_select_button.set_image_path('images/menu_bar_level.png')
-        self.__level_select_button.set_size(Vector2(35, 15))
-        self.__level_select_button.set_position((Vector2(50, 50)))
+        level_select_button = EventIntegratedButton()
+        level_select_button.set_default_image_path('images/button_images/level_1.png')
+        level_select_button.set_hover_image_path('images/button_images/level_2.png')
+        level_select_button.add_click_event(application_events.STOP_PAUSE_MENU)
+        level_select_button.add_click_event(application_events.START_LEVEL_MENU)
+        level_select_button.set_size(Vector2(21, 8))
+        level_select_button.set_position((Vector2(50, 55)))
+        self.__button_group.add(level_select_button)
 
     def __main_menu_button_config(self) -> None:
-        self.__main_menu_button = Button()
-        self.__main_menu_button.set_image_path('images/menu_bar_main_menu.png')
-        self.__main_menu_button.set_size(Vector2(35, 15))
-        self.__main_menu_button.set_position(Vector2(50, 70))
+        main_menu_button = EventIntegratedButton()
+        main_menu_button.set_default_image_path('images/button_images/main_menu_1.png')
+        main_menu_button.set_hover_image_path('images/button_images/main_menu_2.png')
+        main_menu_button.add_click_event(application_events.END_GAME)
+        main_menu_button.add_click_event(application_events.STOP_PAUSE_MENU)
+        main_menu_button.add_click_event(application_events.START_MAIN_MENU)
+        main_menu_button.set_size(Vector2(21, 8))
+        main_menu_button.set_position(Vector2(50, 70))
+        self.__button_group.add(main_menu_button)
 
     def update(self, delta_time: float) -> None:
+        self.__primary_background_group.update(delta_time=delta_time)
         self.__button_group.update(delta_time=delta_time)
-        if self.__start_button.is_pressed(BUTTON_LEFT):
-            self.__resume_game()
-        if self.__level_select_button.is_pressed(BUTTON_LEFT):
-            self.__start_level_menu()
-        if self.__main_menu_button.is_pressed(BUTTON_LEFT):
-            self.__start_main_menu()
 
     def render(self) -> None:
+        self.__primary_background_group.draw(pygame.display.get_surface())
         self.__button_group.draw(pygame.display.get_surface())
-
-    @staticmethod
-    def __resume_game() -> None:
-        event_handler.post(application_events.RESUME_GAME)
-        event_handler.post(application_events.STOP_PAUSE_MENU)
-
-    @staticmethod
-    def __start_level_menu() -> None:
-        event_handler.post(application_events.START_LEVEL_MENU)
-        event_handler.post(application_events.STOP_PAUSE_MENU)
-
-    @staticmethod
-    def __start_main_menu() -> None:
-        event_handler.post(application_events.END_GAME)
-        event_handler.post(application_events.STOP_PAUSE_MENU)
-        event_handler.post(application_events.START_MAIN_MENU)
