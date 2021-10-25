@@ -20,14 +20,14 @@ class PlayerHandler:
         self.__bullet_handler = BulletHandler(1)
         self.__health_bar = HealthBar()
 
-    def update(self, delta_time: float, obstacle_group: Group, enemy_bullet_group: Group) -> None:
+    def update(self, delta_time: float, platform_group: Group, enemy_bullet_group: Group) -> None:
         if not self.__player.alive():
             self.__end_game()
             return
         for bullet in pygame.sprite.spritecollide(self.__player, enemy_bullet_group, True):
             self.__player.do_damage(bullet.damage)  # TODO:- Fix this
         self.__player_group.sprite.is_grounded = False
-        for obstacle in pygame.sprite.spritecollide(self.__player_group.sprite, obstacle_group, False):
+        for obstacle in pygame.sprite.spritecollide(self.__player_group.sprite, platform_group, False):
             if self.__player_group.sprite.rect.y < obstacle.rect.y:
                 self.__player_group.sprite.is_grounded = True
         self.__player_group.update(delta_time=delta_time)
