@@ -4,7 +4,7 @@ from pygame.sprite import AbstractGroup
 from src.objects import Object
 
 
-class Obstacle(Object):
+class Platform(Object):
     def __init__(self, *groups: AbstractGroup) -> None:
         super().__init__(*groups)
         self.set_image_path('images/obstacle.png')
