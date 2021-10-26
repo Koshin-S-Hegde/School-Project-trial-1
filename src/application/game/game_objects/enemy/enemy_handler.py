@@ -1,4 +1,5 @@
 import pygame.display
+from pygame import Vector2
 from pygame.sprite import Group
 
 from src.application.game.game_objects.bullet.bullet_handler import BulletHandler
@@ -12,7 +13,12 @@ class EnemyHandler:
 
     def __init__(self) -> None:
         self.__enemy_group = Group()
-        self.__enemy_group.add(Enemy())
+        self.__enemy_group.add(Enemy(
+            health=10,
+            position=Vector2(10, 10),
+            size=Vector2(10, 10),
+            image_path="images/default_object.png"
+        ))
         self.__bullet_handler = BulletHandler(1)
 
     def update(self, delta_time: float, player: Player, player_bullet_group: Group) -> None:

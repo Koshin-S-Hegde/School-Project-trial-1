@@ -20,7 +20,8 @@ class PlayerHandler:
             jump_velocity=400,
             gravity=2000,
             position=Vector2(50, 50),
-            size=Vector2(5, 10)
+            size=Vector2(5, 10),
+            health=1
         )
 
         self.__player_group = GroupSingle(self.__player)
