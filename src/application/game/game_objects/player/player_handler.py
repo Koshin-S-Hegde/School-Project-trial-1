@@ -1,4 +1,5 @@
 import pygame
+from pygame import Vector2
 from pygame.sprite import GroupSingle, Group
 
 from src.application.game.game_objects.bullet.bullet_handler import BulletHandler
@@ -15,7 +16,13 @@ class PlayerHandler:
     __health_bar: HealthBar
 
     def __init__(self) -> None:
-        self.__player = Player()
+        self.__player = Player(
+            jump_velocity=400,
+            gravity=2000,
+            position=Vector2(50, 50),
+            size=Vector2(5, 10)
+        )
+
         self.__player_group = GroupSingle(self.__player)
         self.__bullet_handler = BulletHandler(1)
         self.__health_bar = HealthBar()

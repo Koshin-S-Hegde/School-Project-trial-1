@@ -11,13 +11,21 @@ class Player(LivingObject, GravitationalObject):
     __is_grounded: bool
     __PLAYER_GRAVITY: float
 
-    def __init__(self, *groups: AbstractGroup) -> None:
+    def __init__(
+            self,
+            *groups: AbstractGroup,
+            jump_velocity: float,
+            gravity: float,
+            position: Vector2,
+            size: Vector2
+    ) -> None:
         super().__init__(health=1, *groups)
-        self.__JUMP_VELOCITY = 400
-        self.__PLAYER_GRAVITY = 2000
-        self.is_grounded = True
-        self.set_size(Vector2(5, 10))
+        self.__JUMP_VELOCITY = jump_velocity
+        self.__PLAYER_GRAVITY = gravity
+        self.set_position(position)
+        self.set_size(size)
         self.set_image_path("images/square_face_1.png")
+        self.is_grounded = True
 
     @property
     def is_grounded(self) -> bool:
