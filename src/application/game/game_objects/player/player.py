@@ -14,12 +14,13 @@ class Player(LivingObject, GravitationalObject):
     def __init__(
             self,
             *groups: AbstractGroup,
+            health: float,
             jump_velocity: float,
             gravity: float,
             position: Vector2,
             size: Vector2
     ) -> None:
-        super().__init__(health=1, *groups)
+        super().__init__(health=health, *groups)
         self.__JUMP_VELOCITY = jump_velocity
         self.__PLAYER_GRAVITY = gravity
         self.set_position(position)
