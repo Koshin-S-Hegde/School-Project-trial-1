@@ -5,8 +5,14 @@ from src.objects import Object
 
 
 class Platform(Object):
-    def __init__(self, *groups: AbstractGroup) -> None:
+    def __init__(
+            self,
+            image: str,
+            size: Vector2,
+            position: Vector2,
+            *groups: AbstractGroup
+    ) -> None:
         super().__init__(*groups)
-        self.set_image_path('images/obstacle.png')
-        self.set_size(Vector2(40, 5))
-        self.set_position(Vector2(50, 90))
+        self.set_image_path(image)
+        self.set_size(size)
+        self.set_position(position)
