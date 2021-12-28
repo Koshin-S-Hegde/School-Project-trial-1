@@ -8,8 +8,8 @@ class Scene:
     __to_disable_events: dict[int, set[event_handling.supported_event_formats]]
 
     def __init__(self) -> None:
-        self.__is_paused = False
-        self.__is_disabled = False
+        self.__is_paused = True
+        self.__is_disabled = True
         self.__to_pause_events = dict()
         self.__to_disable_events = dict()
 
@@ -57,8 +57,10 @@ class Scene:
     def is_disabled(self) -> bool:
         return self.__is_disabled
 
-    def restart(self, *args, **kwargs) -> None:
-        self.__init__(*args, **kwargs)  # TODO:- Do something about this
+    def restart(self) -> None:
+        self.__is_paused = False
+        self.__is_disabled = False
+        """Restart the Scene"""
 
     def _add_to_pause_event_callback(self, event_type: int, callback: event_handling.supported_event_formats) -> None:
         self.__to_pause_events.setdefault(event_type, set())

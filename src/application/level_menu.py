@@ -13,8 +13,8 @@ class LevelMenu(Scene):
     __background: Object
     __background_group: GroupSingle
 
-    def __init__(self) -> None:
-        super().__init__()
+    def restart(self) -> None:
+        super().restart()
         # groups
         self.__button_group = Group()
         # background configs

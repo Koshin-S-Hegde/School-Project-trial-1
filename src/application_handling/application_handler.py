@@ -1,5 +1,3 @@
-from typing import Type
-
 from src.application_handling import application_events
 from src.application.game.game import Game
 from src.application.level_menu import LevelMenu
@@ -28,21 +26,16 @@ class ApplicationHandler:
 
     def __init_scenes(self) -> None:
         self.__main_menu = MainMenu()
-        self.__level_menu = self.__create_disposed_scene(LevelMenu)
-        self.__pause_menu = self.__create_disposed_scene(PauseMenu)
-        self.__game = self.__create_disposed_scene(Game)
-        self.__end_menu = self.__create_disposed_scene(EndMenu)
+        self.__main_menu.restart()
+        self.__level_menu = LevelMenu()
+        self.__pause_menu = PauseMenu()
+        self.__game = Game()
+        self.__end_menu = EndMenu()
         self.__scene_group.append(self.__game)
         self.__scene_group.append(self.__main_menu)
         self.__scene_group.append(self.__level_menu)
         self.__scene_group.append(self.__pause_menu)
         self.__scene_group.append(self.__end_menu)
-
-    @staticmethod
-    def __create_disposed_scene(scene_type: Type):  # TODO:- Fix the type hints for this
-        scene: scene_type = scene_type()
-        scene.dispose()
-        return scene
 
     def __init_callbacks(self) -> None:
         # main menu
