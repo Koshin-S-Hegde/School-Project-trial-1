@@ -2,7 +2,7 @@ import pygame.event
 from pygame import Vector2
 
 from src.application.game.game_objects.platform.platform_handler import PlatformHandler
-from src.application.game.game_objects.enemy.enemy_handler import EnemyHandler
+from src.application.game.game_objects.enemy.enemy_handler import EnemyHandler, EnemyConfiguration
 from src.application.game.game_objects.player.player_handler import PlayerHandler, PlayerConfiguration
 from src.application_handling import application_events
 from src.application_handling.scenes.scene import Scene
@@ -29,7 +29,13 @@ class Game(Scene):
             )
         )
         self.__platform_handler = PlatformHandler()
-        self.__enemy_handler = EnemyHandler()
+        self.__enemy_handler = EnemyHandler(
+            EnemyConfiguration(
+                health=10,
+                position=Vector2(10, 10),
+                size=Vector2(10, 10),
+                image_path="images/default_object.png"
+            ))
 
     def update(self, delta_time: float) -> None:
         super(Game, self).update(delta_time=delta_time)

@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import pygame.display
 from pygame import Vector2
 from pygame.sprite import Group
@@ -7,17 +9,37 @@ from src.application.game.game_objects.enemy.enemy import Enemy
 from src.application.game.game_objects.player.player import Player
 
 
+@dataclass
+class EnemyConfiguration:
+    health: float
+    position: Vector2
+    size: Vector2
+    image_path: str
+
+    def __init__(
+            self,
+            health: float = 10,
+            position: Vector2 = Vector2(10, 10),
+            size: Vector2 = Vector2(10, 10),
+            image_path: str = "images/default_object.png"
+    ) -> None:
+        self.health = health
+        self.position = position
+        self.size = size
+        self.image_path = image_path
+
+
 class EnemyHandler:
     __enemy_group: Group
     __bullet_handler: BulletHandler
 
-    def __init__(self) -> None:
+    def __init__(self, enemy_configuration: EnemyConfiguration) -> None:
         self.__enemy_group = Group()
         self.__enemy_group.add(Enemy(
-            health=10,
-            position=Vector2(10, 10),
-            size=Vector2(10, 10),
-            image_path="images/default_object.png"
+            health=enemy_configuration.health,
+            position=enemy_configuration.position,
+            size=enemy_configuration.size,
+            image_path=enemy_configuration.image_path
         ))
         self.__bullet_handler = BulletHandler(1)
 
