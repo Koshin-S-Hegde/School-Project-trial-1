@@ -1,8 +1,9 @@
 import pygame.event
+from pygame import Vector2
 
 from src.application.game.game_objects.platform.platform_handler import PlatformHandler
 from src.application.game.game_objects.enemy.enemy_handler import EnemyHandler
-from src.application.game.game_objects.player.player_handler import PlayerHandler
+from src.application.game.game_objects.player.player_handler import PlayerHandler, PlayerConfiguration
 from src.application_handling import application_events
 from src.application_handling.scenes.scene import Scene
 from src.event_handling import event_handler
@@ -18,7 +19,15 @@ class Game(Scene):
         self.__load_game_objects()
 
     def __load_game_objects(self) -> None:
-        self.__player_handler = PlayerHandler()
+        self.__player_handler = PlayerHandler(
+            PlayerConfiguration(
+                jump_velocity=400,
+                gravity=2000,
+                position=Vector2(50, 50),
+                size=Vector2(5, 10),
+                health=1
+            )
+        )
         self.__platform_handler = PlatformHandler()
         self.__enemy_handler = EnemyHandler()
 

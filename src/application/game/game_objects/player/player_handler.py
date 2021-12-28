@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import pygame
 from pygame import Vector2
 from pygame.sprite import GroupSingle, Group
@@ -9,19 +11,42 @@ from src.application_handling import application_events
 from src.event_handling import event_handler
 
 
+@dataclass
+class PlayerConfiguration:
+    jump_velocity: float
+    gravity: float
+    position: Vector2
+    size: Vector2
+    health: float
+
+    def __init__(
+            self,
+            jump_velocity: float = 400,
+            gravity: float = 2000,
+            position: Vector2 = Vector2(50, 50),
+            size: Vector2 = Vector2(5, 10),
+            health: float = 1
+    ) -> None:
+        self.jump_velocity = jump_velocity
+        self.gravity = gravity
+        self.position = position
+        self.size = size
+        self.health = health
+
+
 class PlayerHandler:
     __player: Player
     __player_group: GroupSingle
     __bullet_handler: BulletHandler
     __health_bar: HealthBar
 
-    def __init__(self) -> None:
+    def __init__(self, player_configuration: PlayerConfiguration) -> None:
         self.__player = Player(
-            jump_velocity=400,
-            gravity=2000,
-            position=Vector2(50, 50),
-            size=Vector2(5, 10),
-            health=1
+            jump_velocity=player_configuration.jump_velocity,
+            gravity=player_configuration.gravity,
+            position=player_configuration.position,
+            size=player_configuration.size,
+            health=player_configuration.health
         )
 
         self.__player_group = GroupSingle(self.__player)
