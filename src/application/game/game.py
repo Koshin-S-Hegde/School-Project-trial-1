@@ -1,7 +1,7 @@
 import pygame.event
 from pygame import Vector2
 
-from src.application.game.game_objects.platform.platform_handler import PlatformHandler
+from src.application.game.game_objects.platform.platform_handler import PlatformHandler, PlatformConfiguration
 from src.application.game.game_objects.enemy.enemy_handler import EnemyHandler, EnemyConfiguration
 from src.application.game.game_objects.player.player_handler import PlayerHandler, PlayerConfiguration
 from src.application_handling import application_events
@@ -28,7 +28,13 @@ class Game(Scene):
                 health=1
             )
         )
-        self.__platform_handler = PlatformHandler()
+        self.__platform_handler = PlatformHandler(
+            PlatformConfiguration(
+                image_path="images/obstacle.png",
+                size=Vector2(40, 5),
+                position=Vector2(50, 90)
+            )
+        )
         self.__enemy_handler = EnemyHandler(
             EnemyConfiguration(
                 health=10,
