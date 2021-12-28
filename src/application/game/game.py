@@ -13,8 +13,8 @@ class Game(Scene):
     __enemy_handler: EnemyHandler
     __player_handler: PlayerHandler
 
-    def __init__(self, event: pygame.event.Event = None) -> None:
-        super().__init__()
+    def restart(self, event: pygame.event.Event = None) -> None:
+        super().restart()
         self.__load_game_objects()
 
     def __load_game_objects(self) -> None:

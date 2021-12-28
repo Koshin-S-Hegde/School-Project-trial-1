@@ -12,8 +12,8 @@ class PauseMenu(Scene):
     __button_group: Group
     __primary_background_group: GroupSingle
 
-    def __init__(self) -> None:
-        super().__init__()
+    def restart(self) -> None:
+        super().restart()
         # groups
         self.__button_group = Group()
         # background configs
