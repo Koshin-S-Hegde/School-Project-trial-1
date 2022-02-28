@@ -15,6 +15,9 @@ class Game(Scene):
 
     def update(self, delta_time: float) -> None:
         super(Game, self).update(delta_time=delta_time)
+        # pause menu
+        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+            self.__start_pause_menu()
 
     def render(self) -> None:
         super(Game, self).render()
