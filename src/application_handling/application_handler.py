@@ -1,6 +1,5 @@
 from src.application_handling import application_events
 from src.application.game.game import Game
-from src.application.level_menu import LevelMenu
 from src.application.main_menu import MainMenu
 from src.application.pause_menu import PauseMenu
 from src.application_handling.scenes.scene import Scene
@@ -11,7 +10,6 @@ from src.event_handling import event_handler
 
 class ApplicationHandler:
     __main_menu: MainMenu
-    __level_menu: LevelMenu
     __pause_menu: PauseMenu
     __game: Game
     __end_menu: EndMenu
@@ -27,13 +25,11 @@ class ApplicationHandler:
     def __init_scenes(self) -> None:
         self.__main_menu = MainMenu()
         self.__main_menu.restart()
-        self.__level_menu = LevelMenu()
         self.__pause_menu = PauseMenu()
         self.__game = Game()
         self.__end_menu = EndMenu()
         self.__scene_group.append(self.__game)
         self.__scene_group.append(self.__main_menu)
-        self.__scene_group.append(self.__level_menu)
         self.__scene_group.append(self.__pause_menu)
         self.__scene_group.append(self.__end_menu)
 
@@ -41,9 +37,6 @@ class ApplicationHandler:
         # main menu
         event_handler.subscribe(application_events.START_MAIN_MENU, self.__main_menu.restart)
         event_handler.subscribe(application_events.STOP_MAIN_MENU, self.__main_menu.dispose)
-        # level menu
-        event_handler.subscribe(application_events.START_LEVEL_MENU, self.__level_menu.restart)
-        event_handler.subscribe(application_events.STOP_LEVEL_MENU, self.__level_menu.dispose)
         # pause menu
         event_handler.subscribe(application_events.START_PAUSE_MENU, self.__pause_menu.restart)
         event_handler.subscribe(application_events.STOP_PAUSE_MENU, self.__pause_menu.dispose)
