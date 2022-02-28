@@ -25,7 +25,6 @@ class MainMenu(Scene):
         self.__secondary_background_config()
         # button configs
         self.__start_button_config()
-        self.__level_select_button_config()
         self.__quit_button_config()
         self.__credit_button_config()
         self.__license_button_config()
@@ -53,16 +52,6 @@ class MainMenu(Scene):
         start_button.set_size(Vector2(21, 8))
         start_button.set_position(Vector2(50, 50))
         self.__button_group.add(start_button)
-
-    def __level_select_button_config(self) -> None:
-        level_select_button = EventIntegratedButton()
-        level_select_button.set_default_image_path('images/button_images/level_1.png')
-        level_select_button.set_hover_image_path('images/button_images/level_2.png')
-        level_select_button.add_click_event(application_events.STOP_MAIN_MENU)
-        level_select_button.add_click_event(application_events.START_LEVEL_MENU)
-        level_select_button.set_size(Vector2(21, 8))
-        level_select_button.set_position((Vector2(50, 60)))
-        self.__button_group.add(level_select_button)
 
     def __quit_button_config(self) -> None:
         quit_button = EventIntegratedButton()

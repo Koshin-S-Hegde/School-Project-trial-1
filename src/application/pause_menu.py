@@ -20,7 +20,6 @@ class PauseMenu(Scene):
         self.__primary_background_config()
         # button configs
         self.__resume_button_config()
-        self.__level_select_button_config()
         self.__main_menu_button_config()
 
     def __primary_background_config(self) -> None:
@@ -39,16 +38,6 @@ class PauseMenu(Scene):
         resume_button.set_size(Vector2(21, 8))
         resume_button.set_position(Vector2(50, 40))
         self.__button_group.add(resume_button)
-
-    def __level_select_button_config(self) -> None:
-        level_select_button = EventIntegratedButton()
-        level_select_button.set_default_image_path('images/button_images/level_1.png')
-        level_select_button.set_hover_image_path('images/button_images/level_2.png')
-        level_select_button.add_click_event(application_events.STOP_PAUSE_MENU)
-        level_select_button.add_click_event(application_events.START_LEVEL_MENU)
-        level_select_button.set_size(Vector2(21, 8))
-        level_select_button.set_position((Vector2(50, 55)))
-        self.__button_group.add(level_select_button)
 
     def __main_menu_button_config(self) -> None:
         main_menu_button = EventIntegratedButton()
