@@ -1,3 +1,5 @@
+from src.application.credit_menu import CreditMenu
+from src.application.license_menu import LicenseMenu
 from src.application_handling import application_events
 from src.application.game.game import Game
 from src.application.main_menu import MainMenu
@@ -13,6 +15,10 @@ class ApplicationHandler:
     __pause_menu: PauseMenu
     __game: Game
     __end_menu: EndMenu
+    __credit_menu: CreditMenu
+    __credit_menu: Scene
+    __license_menu: Scene
+    __license_menu: LicenseMenu
     __pause_menu: Scene
     __end_menu: Scene
     __scene_group: SceneGroup
@@ -26,12 +32,17 @@ class ApplicationHandler:
         self.__main_menu = MainMenu()
         self.__main_menu.restart()
         self.__pause_menu = PauseMenu()
-        self.__game = Game()
         self.__end_menu = EndMenu()
+        self.__license_menu = LicenseMenu()
+        self.__credit_menu = CreditMenu()
+        self.__game = Game()
+        # scene group
         self.__scene_group.append(self.__game)
         self.__scene_group.append(self.__main_menu)
         self.__scene_group.append(self.__pause_menu)
         self.__scene_group.append(self.__end_menu)
+        self.__scene_group.append(self.__license_menu)
+        self.__scene_group.append(self.__credit_menu)
 
     def __init_callbacks(self) -> None:
         # main menu
@@ -48,6 +59,12 @@ class ApplicationHandler:
         # end menu
         event_handler.subscribe(application_events.START_END_MENU, self.__end_menu.restart)
         event_handler.subscribe(application_events.STOP_END_MENU, self.__end_menu.dispose)
+        # credit menu
+        event_handler.subscribe(application_events.START_CREDIT_MENU, self.__credit_menu.restart)
+        event_handler.subscribe(application_events.STOP_CREDIT_MENU, self.__credit_menu.dispose)
+        # license menu
+        event_handler.subscribe(application_events.START_LICENSE_MENU,self.__license_menu.restart)
+        event_handler.subscribe(application_events.STOP_LICENSE_MENU,self.__license_menu.dispose)
 
     def update(self) -> None:
         self.__scene_group.update()

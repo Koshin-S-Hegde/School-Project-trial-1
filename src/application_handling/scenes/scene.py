@@ -1,3 +1,5 @@
+import pygame.mixer
+
 from src import event_handling
 
 
@@ -74,3 +76,4 @@ class Scene:
         (using del keyword or by just equating it to null)
         """
         self.disable()
+        pygame.mixer.stop()
