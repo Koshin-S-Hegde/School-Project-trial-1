@@ -12,6 +12,7 @@ class AnimatedObject(Object):
 
     def __init__(self, *groups: AbstractGroup):
         super().__init__()
+        self.__animation_speed = 0
         self.__current_sprite_index = 0
         self.__frame_list = []
         self.__should_animation_run = False
@@ -29,6 +30,12 @@ class AnimatedObject(Object):
     def set_custom_frame(self, frame_number: int) -> None:
         self.set_image_surface(self.__frame_list[frame_number])
 
+    def set_current_frame(self, frame_number: int) -> None:
+        self.__current_sprite_index = frame_number
+
+    def get_current_frame(self) -> int:
+        return int(self.__current_sprite_index)
+
     def set_frame_per_second(self, speed: float) -> None:
         self.__animation_speed = speed
 
@@ -37,10 +44,10 @@ class AnimatedObject(Object):
 
     def __animation_loop(self, delta_time: float) -> None:
         if self.__should_animation_run:
-            self.__current_sprite_index += self.__animation_speed * delta_time
-            if self.__current_sprite_index >= len(self.__frame_list):
-                self.__current_sprite_index = 0
             self.set_image_surface(self.__frame_list[int(self.__current_sprite_index)])
+        self.__current_sprite_index += self.__animation_speed * delta_time
+        if self.__current_sprite_index >= len(self.__frame_list):
+            self.__current_sprite_index = 0
 
     def enable_animation(self) -> None:
         self.__should_animation_run = True

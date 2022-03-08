@@ -14,3 +14,9 @@ STOP_PAUSE_MENU: int = event_creator.create_event()
 # end menu
 START_END_MENU: int = event_creator.create_event()
 STOP_END_MENU: int = event_creator.create_event()
+# credit menu
+START_CREDIT_MENU: int = event_creator.create_event()
+STOP_CREDIT_MENU: int = event_creator.create_event()
+# license_menu
+START_LICENSE_MENU: int = event_creator.create_event()
+STOP_LICENSE_MENU: int = event_creator.create_event()

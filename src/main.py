@@ -7,7 +7,7 @@ from src.event_handling import event_handler
 
 def main() -> None:
     pygame.init()
-    pygame.display.set_mode((500, 500), pygame.RESIZABLE)
+    pygame.display.set_mode((1200, 700), pygame.RESIZABLE)
     event_handler.subscribe(pygame.QUIT, handle_game_quit)
     run()
 
