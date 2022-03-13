@@ -15,14 +15,17 @@ class SceneGroup:
 
     def update(self) -> None:
         """Updates all scenes in the group that are not paused"""
+
         if not self.__first_frame_done:
             self.__last_time_update_was_called = time.time()
             self.__first_frame_done = True
-        delta_time: float = (time.time() - self.__last_time_update_was_called) * 10
+
+        delta_time: float = time.time() - self.__last_time_update_was_called
+        self.__last_time_update_was_called = time.time()
+
         for scene in self.__scenes:
             if not scene.is_paused:
                 scene.update(delta_time)
-        self.__last_time_update_was_called = time.time()
 
     def render(self) -> None:
         """All the rendering stuff will be handled here"""
