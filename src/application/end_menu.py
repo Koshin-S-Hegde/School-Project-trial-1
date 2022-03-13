@@ -53,7 +53,7 @@ class EndMenu(Scene):
         main_menu_button = EventIntegratedButton()
         main_menu_button.set_default_image_path('images/button_images/main_menu_1.png')
         main_menu_button.set_hover_image_path('images/button_images/main_menu_2.png')
-        main_menu_button.add_click_event(application_events.END_GAME)
+        main_menu_button.add_click_event(application_events.STOP_GAME)
         main_menu_button.add_click_event(application_events.STOP_END_MENU)
         main_menu_button.add_click_event(application_events.START_MAIN_MENU)
         main_menu_button.set_size(Vector2(21, 8))

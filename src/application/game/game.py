@@ -19,6 +19,10 @@ class Game(Scene):
         if pygame.key.get_pressed()[pygame.K_ESCAPE]:
             self.__start_pause_menu()
 
+        if pygame.key.get_pressed()[pygame.key.key_code('K')]:
+            event_handler.post(application_events.STOP_GAME)
+            event_handler.post(application_events.START_END_MENU)
+
     def render(self) -> None:
         super(Game, self).render()
 

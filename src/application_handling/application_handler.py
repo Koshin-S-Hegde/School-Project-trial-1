@@ -55,7 +55,7 @@ class ApplicationHandler:
         event_handler.subscribe(application_events.START_GAME, self.__game.restart)
         event_handler.subscribe(application_events.PAUSE_GAME, self.__game.pause)
         event_handler.subscribe(application_events.RESUME_GAME, self.__game.resume)
-        event_handler.subscribe(application_events.END_GAME, self.__game.dispose)
+        event_handler.subscribe(application_events.STOP_GAME, self.__game.dispose)
         # end menu
         event_handler.subscribe(application_events.START_END_MENU, self.__end_menu.restart)
         event_handler.subscribe(application_events.STOP_END_MENU, self.__end_menu.dispose)
