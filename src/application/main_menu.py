@@ -56,10 +56,12 @@ class MainMenu(Scene):
 
     def __third_background_config(self) -> None:
         self.__third_background = AnimatedObject()
-        image_path = 'images/background_images/transparent_background_set/tra-'
+        image_path: str = "images/background_images/transparent_background_set/tra-"
+        extension: str = ".png"
 
+        self.__third_background.set_first_frame(f"{image_path}1{extension}")
         for i in range(1, self.__third_background_size + 1):
-            self.__third_background.add_animation_sprite(f'{image_path}{i}.png')
+            self.__third_background.add_animation_sprite(image_path + str(i) + extension)
 
         self.__third_background.set_frame_per_second(5)
         self.__third_background.set_size(Vector2(100, 100))
@@ -109,7 +111,7 @@ class MainMenu(Scene):
 
     @staticmethod
     def __main_menu_music_config():
-        pygame.mixer.Channel(0).play(pygame.mixer.Sound('music/alexander-nakarada-dungeons-and-dragons.mp3'), -1)
+        pygame.mixer.Channel(0).play(pygame.mixer.Sound('music/background_sound.mp3'), -1)
         pygame.mixer.Channel(0).set_volume(0.8)
 
     def update(self, delta_time: float) -> None:

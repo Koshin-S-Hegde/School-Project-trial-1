@@ -16,7 +16,7 @@ class EventIntegratedButton(AnimatedButton):
         self.change_frame(1, "images/default.png")
         self.change_frame(0, "images/default.png")
         self.__is_hover_music_playing = False
-        self.__hover_music = 'music/sound-7.mp3'
+        self.__hover_music = 'music/button_hover_sounds.mp3'
 
     def update(self, *args, **kwargs) -> None:
         super(EventIntegratedButton, self).update(*args, **kwargs)
