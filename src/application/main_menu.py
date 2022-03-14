@@ -10,15 +10,18 @@ from src.objects.event_integrated_button import EventIntegratedButton
 
 
 class MainMenu(Scene):
-    __secondary_background: Object
     __primary_background: Object
+    __primary_background_group: GroupSingle
+
+    __secondary_background: Object
+    __secondary_background_group: Group
+
     __third_background: AnimatedObject
+    __third_background_group: GroupSingle
     __third_background_size: int
     __third_background_animation_started: bool
+
     __button_group: Group
-    __secondary_background_group: Group
-    __primary_background_group: GroupSingle
-    __third_background_group: GroupSingle
 
     def restart(self) -> None:
         super().restart()
@@ -123,6 +126,8 @@ class MainMenu(Scene):
             self.__third_background.disable_animation()
         if self.__third_background.get_current_frame() == 1:
             self.__third_background_animation_started = True
+        if not self.__third_background_animation_started and self.__third_background.get_current_frame() > 1:
+            self.__third_background.set_current_frame(0)
 
         self.__button_group.update(delta_time=delta_time)
 
@@ -131,3 +136,7 @@ class MainMenu(Scene):
         self.__secondary_background_group.draw(pygame.display.get_surface())
         self.__button_group.draw(pygame.display.get_surface())
         self.__third_background_group.draw(pygame.display.get_surface())
+
+    def dispose(self) -> None:
+        super(MainMenu, self).dispose()
+        pygame.mixer.Channel(0).stop()

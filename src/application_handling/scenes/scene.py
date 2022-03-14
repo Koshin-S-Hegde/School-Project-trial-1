@@ -76,4 +76,3 @@ class Scene:
         (using del keyword or by just equating it to null)
         """
         self.disable()
-        pygame.mixer.stop()
