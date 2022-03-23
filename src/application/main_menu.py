@@ -29,7 +29,7 @@ class MainMenu(Scene):
         self.__button_group = Group()
         self.__secondary_background_group = Group()
         # variables
-        self.__third_background_size = 10
+        self.__third_background_size = 40
         self.__third_background_animation_started = False
         # backgrounds
         self.__third_background_config()
@@ -59,14 +59,14 @@ class MainMenu(Scene):
 
     def __third_background_config(self) -> None:
         self.__third_background = AnimatedObject()
-        image_path: str = "images/background_images/transparent_background_set/tra-"
+        image_path: str = "images/background_images/loading_images/loading_"
         extension: str = ".png"
 
         self.__third_background.set_first_frame(f"{image_path}1{extension}")
         for i in range(1, self.__third_background_size + 1):
             self.__third_background.add_animation_sprite(image_path + str(i) + extension)
 
-        self.__third_background.set_frame_per_second(5)
+        self.__third_background.set_frame_per_second(10)
         self.__third_background.set_size(Vector2(100, 100))
         self.__third_background.set_position(Vector2(50, 50))
         self.__third_background.enable_animation()
