@@ -2,13 +2,13 @@ import pygame
 from pygame import Vector2
 from pygame.sprite import Group, GroupSingle
 from src.application_handling.scenes.scene import Scene
-from src.objects import Object
+from src.game_objects import GameObject
 from src.application_handling import application_events
-from src.objects.event_integrated_button import EventIntegratedButton
+from src.game_objects.event_integrated_button import EventIntegratedButton
 
 
 class LicenseMenu(Scene):
-    __primary_background: Object
+    __primary_background: GameObject
     __button_group: Group
     __primary_background_group: GroupSingle
 
@@ -21,7 +21,7 @@ class LicenseMenu(Scene):
         self.__back_button_config()
 
     def __primary_background_config(self) -> None:
-        primary_background = Object()
+        primary_background = GameObject()
         primary_background.set_image_path('images/background_images/moss_forest.png')
         primary_background.set_size(Vector2(100, 100))
         primary_background.set_position(Vector2(50, 50))

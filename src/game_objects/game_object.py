@@ -6,7 +6,7 @@ from pygame.sprite import Sprite
 from src.event_handling import event_handler
 
 
-class Object(Sprite):
+class GameObject(Sprite):
     __original_image: pygame.Surface
     __size_percentage: Vector2
     __position_percentage: Vector2
@@ -72,6 +72,6 @@ class Object(Sprite):
         self.__update_position()
 
     def update(self, *args, **kwargs) -> None:
-        super(Object, self).update(*args, **kwargs)
+        super(GameObject, self).update(*args, **kwargs)
         if "delta_time" not in kwargs:
             raise TypeError("delta_time key argument was not passed.")

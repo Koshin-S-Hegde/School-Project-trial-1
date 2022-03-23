@@ -1,9 +1,9 @@
 from pygame.sprite import AbstractGroup
 
-from src.objects import Object
+from src.game_objects import GameObject
 
 
-class LivingObject(Object):
+class LivingObject(GameObject):
     __health: float
 
     def __init__(self, health: float, *groups: AbstractGroup):

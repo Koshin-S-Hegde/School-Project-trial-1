@@ -2,10 +2,10 @@ import pygame.font
 from pygame import Vector2
 from pygame.sprite import AbstractGroup
 
-from src.objects import Object
+from src.game_objects import GameObject
 
 
-class Text(Object):
+class Text(GameObject):
     __text_style: str
     __text_quality: int
     __text_color: tuple

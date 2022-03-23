@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.sprite import AbstractGroup
 
-from src.objects.kinetic_object import KineticObject
+from src.game_objects.kinetic_object import KineticObject
 
 
 class GravitationalObject(KineticObject):
