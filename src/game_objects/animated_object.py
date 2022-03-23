@@ -1,10 +1,10 @@
 import pygame
 from pygame.sprite import AbstractGroup
 
-from src.objects.object import Object
+from src.game_objects.game_object import GameObject
 
 
-class AnimatedObject(Object):
+class AnimatedObject(GameObject):
     __current_sprite_index: float
     __frame_list: list[pygame.Surface]
     __animation_speed: float

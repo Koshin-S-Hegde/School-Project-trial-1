@@ -1,9 +1,9 @@
 from pygame.math import Vector2
 from pygame.sprite import AbstractGroup
-from src.objects.object import Object
+from src.game_objects.game_object import GameObject
 
 
-class KineticObject(Object):
+class KineticObject(GameObject):
     __velocity: Vector2
     __acceleration: Vector2
 

@@ -4,16 +4,16 @@ from pygame.sprite import Group, GroupSingle
 
 from src.application_handling import application_events
 from src.application_handling.scenes.scene import Scene
-from src.objects import Object
-from src.objects.animated_object import AnimatedObject
-from src.objects.event_integrated_button import EventIntegratedButton
+from src.game_objects import GameObject
+from src.game_objects.animated_object import AnimatedObject
+from src.game_objects.event_integrated_button import EventIntegratedButton
 
 
 class MainMenu(Scene):
-    __primary_background: Object
+    __primary_background: GameObject
     __primary_background_group: GroupSingle
 
-    __secondary_background: Object
+    __secondary_background: GameObject
     __secondary_background_group: Group
 
     __third_background: AnimatedObject
@@ -44,14 +44,14 @@ class MainMenu(Scene):
         self.__main_menu_music_config()
 
     def __primary_background_config(self) -> None:
-        primary_background = Object()
+        primary_background = GameObject()
         primary_background.set_image_path('images/background_images/moss_forest.png')
         primary_background.set_size(Vector2(100, 100))
         primary_background.set_position(Vector2(50, 50))
         self.__primary_background_group = GroupSingle(primary_background)
 
     def __secondary_background_config(self) -> None:
-        secondary_background = Object()
+        secondary_background = GameObject()
         secondary_background.set_image_path('images/background_images/rencar_background9.png')
         secondary_background.set_size(Vector2(100, 100))
         secondary_background.set_position(Vector2(51, 50))

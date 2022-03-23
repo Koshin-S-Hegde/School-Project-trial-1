@@ -2,7 +2,7 @@ import pygame
 from pygame.sprite import AbstractGroup
 
 from src.event_handling import event_handler
-from src.objects.animated_button import AnimatedButton
+from src.game_objects.animated_button import AnimatedButton
 
 
 class EventIntegratedButton(AnimatedButton):

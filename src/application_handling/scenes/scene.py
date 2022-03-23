@@ -21,7 +21,7 @@ class Scene:
 
     def render(self) -> None:
         """This is called every single frame.\n
-        Inherit this method to render objects to the screen"""
+        Inherit this method to render game_objects to the screen"""
 
     def pause(self) -> None:
         """This function is to be called whenever the scene has to pause."""
@@ -72,7 +72,7 @@ class Scene:
     def dispose(self) -> None:
         """
         Call this ONLY if you do NOT need any of the changes made to th Scene instance.\n
-        If you are inheriting this class, make sure that you delete ALL the objects
+        If you are inheriting this class, make sure that you delete ALL the game_objects
         (using del keyword or by just equating it to null)
         """
         self.disable()

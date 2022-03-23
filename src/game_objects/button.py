@@ -4,10 +4,10 @@ import pygame
 from pygame.sprite import AbstractGroup
 
 from src.event_handling import event_handler
-from src.objects.object import Object
+from src.game_objects.game_object import GameObject
 
 
-class Button(Object):
+class Button(GameObject):
     __mouse_is_down: defaultdict[int, bool]
 
     def __init__(self, *groups: AbstractGroup):
